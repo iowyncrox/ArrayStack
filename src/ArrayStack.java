@@ -2,7 +2,7 @@ import java.util.NoSuchElementException;
 
 public class ArrayStack<T> {
 
-	private static final int DEFAULTCAPACITY = 15;
+	private static final int DEFAULT_CAPACITY = 15;
 	private int top;
 	private T[] array;
 
