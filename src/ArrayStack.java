@@ -1,10 +1,13 @@
 import java.util.NoSuchElementException;
 
+@SuppressWarnings("unchecked")
 public class ArrayStack<T> {
 
 	private static final int DEFAULT_CAPACITY = 15;
-	private int top;
 	private T[] array;
+	private int top;
+	private int totalNumberOfElements;
+	private int capacity;
 
 	public ArrayStack() {
 		this(DEFAULT_CAPACITY);
@@ -13,19 +16,22 @@ public class ArrayStack<T> {
 	public ArrayStack(int capacity) {
 		if (capacity <= 0) {
 			array = (T[]) new Object[DEFAULT_CAPACITY];
+			capacity = DEFAULT_CAPACITY;
 		} else {
 			array = (T[]) new Object[capacity];
+			this.capacity = capacity;
 		}
 
 		top = -1;
+		totalNumberOfElements = 0;
 	}
 
 	public boolean isEmpty() {
-		return top == -1;
+		return totalNumberOfElements == 0;
 	}
 
 	public boolean isFull() {
-		return top == array.length - 1;
+		return totalNumberOfElements == capacity;
 	}
 
 	public T topOfStack() {
@@ -41,6 +47,7 @@ public class ArrayStack<T> {
 		}
 		++top;
 		array[top] = data;
+		++totalNumberOfElements;
 	}
 
 	public T delete() {
@@ -50,6 +57,7 @@ public class ArrayStack<T> {
 		T temp = topOfStack();
 		array[top] = null;
 		--top;
+		--totalNumberOfElements;
 		return temp;
 	}
 
@@ -58,6 +66,7 @@ public class ArrayStack<T> {
 			array[i] = null;
 		}
 		top = -1;
+		totalNumberOfElements = 0;
 	}
 
 	@Override
@@ -82,6 +91,9 @@ public class ArrayStack<T> {
 		integerArrayStack.delete();
 		integerArrayStack.delete();
 
+		System.out.println(integerArrayStack);
+
+		integerArrayStack.clear();
 		System.out.println(integerArrayStack);
 	}
 }
