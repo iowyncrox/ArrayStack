@@ -7,12 +7,12 @@ public class ArrayStack<T> {
 	private T[] array;
 
 	public ArrayStack() {
-		this(DEFAULTCAPACITY);
+		this(DEFAULT_CAPACITY);
 	}
 
 	public ArrayStack(int capacity) {
 		if (capacity <= 0) {
-			array = (T[]) new Object[DEFAULTCAPACITY];
+			array = (T[]) new Object[DEFAULT_CAPACITY];
 		} else {
 			array = (T[]) new Object[capacity];
 		}
